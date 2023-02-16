@@ -29,7 +29,7 @@ return {
         }
     },
     lazy_opts = {
-        root = vim.fn.stdpath("data") .. "/site/pack/lazy"
+        root = vim.fn.stdpath("data") .. "/lazy"
     },
     autocmds = {
         {
