@@ -3,8 +3,27 @@ return {
         shiftwidth = 4,
         tabstop = 4,
         expandtab = true,
+        timeoutlen = 100,
     },
-    g = {},
+    g = {
+        mapleader = " "
+    },
+    mappings = {
+        n = {
+            ["<leader>"] = {
+                f = {
+                    name = "File",
+                    f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
+                    n = { "<cmd>enew<cr>", "Create a new file" },
+                },
+                e = { "<cmd>Neotree float<cr>", "Open the file explorer" }
+            },
+            f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
+            e = { "<cmd>Neotree float<cr>", "Open the file explorer" }
+        },
+        i = {},
+        v = {},
+    },
     plugins = {
         {
             "folke/which-key.nvim",
