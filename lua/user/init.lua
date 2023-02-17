@@ -6,6 +6,8 @@ return {
         expandtab = true,
         timeoutlen = 200,
         signcolumn = "yes",
+        number = true,
+        relativenumber = true,
     },
     g = {
         mapleader = " ",
@@ -18,18 +20,39 @@ return {
                     f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
                     n = { "<cmd>enew<cr>", "Create a new file" },
                 },
-                e = { "<cmd>Neotree float<cr>", "Open the file explorer" }
+                e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
+                t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
+                ["/"] = { function() require("Comment.api").toggle.linewise.current() end, "Toggle comments" },
             },
             f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
-            e = { "<cmd>Neotree float<cr>", "Open the file explorer" }
+            e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
+            t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
         },
         i = {},
         v = {},
+        x = {
+            ["<leader>"] = {
+                ["/"] = {
+                    function()
+                        local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+                        local api = require("Comment.api")
+                        vim.api.nvim_feedkeys(esc, "nx", false)
+                        api.toggle.linewise(vim.fn.visualmode())
+                    end,
+                    "Toggle comments"
+                }
+            }
+        }
+
     },
     plugins = {
         {
             "windwp/nvim-autopairs",
             config = {},
+        },
+        {
+            "numToStr/Comment.nvim",
+            config = {}
         },
         {
             "folke/which-key.nvim",
@@ -66,6 +89,11 @@ return {
         },
 
         {
+            "lewis6991/gitsigns.nvim",
+            config = {},
+        },
+
+        {
             "VonHeikemen/lsp-zero.nvim",
             branch = "v1.x",
             dependencies = {
@@ -87,12 +115,7 @@ return {
                 {'rafamadriz/friendly-snippets'}, -- Optional
             },
             config = function()
-                local lsp = require('lsp-zero').preset({
-                    name = 'minimal',
-                    set_lsp_keymaps = true,
-                    manage_nvim_cmp = true,
-                    suggest_lsp_servers = false,
-                })
+                local lsp = require('lsp-zero').preset("recommended")
 
                 -- Configure lua language server for neovim
                 lsp.nvim_workspace()
@@ -100,9 +123,19 @@ return {
                 lsp.setup()
             end
         },
+        {
+            "folke/trouble.nvim",
+            dependencies = {
+                "nvim-tree/nvim-web-devicons",
+            },
+            config = {
+                position = "right",
+                width = 35,
+            },
+        },
 
         -- Themes
-        { 
+        {
             "catppuccin/nvim",
             name = "catppuccin",
             config = {
