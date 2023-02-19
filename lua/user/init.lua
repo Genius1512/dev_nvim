@@ -99,6 +99,10 @@ return {
             end,
         },
         {
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate"
+        },
+        {
             "lewis6991/gitsigns.nvim",
             config = {},
         },
