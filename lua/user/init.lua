@@ -19,7 +19,7 @@ return {
                     name = "File",
                     f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
                     n = { "<cmd>enew<cr>", "Create a new file" },
-                    e = { "<cmd>NeoTree float<cr>", "Open the file explorer" },
+                    e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
                 },
                 t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
                 ["/"] = { function() require("Comment.api").toggle.linewise.current() end, "Toggle comments" },
@@ -113,12 +113,7 @@ return {
                 { 'rafamadriz/friendly-snippets' }, -- Optional
             },
             config = function()
-                local lsp = require('lsp-zero').preset("recommended")
-
-                -- Configure lua language server for neovim
-                lsp.nvim_workspace()
-
-                lsp.setup()
+                require("user.lsp")
             end
         },
         {
@@ -166,6 +161,15 @@ return {
                     end
                     if not should_skip then vim.cmd("Telescope find_files") end
                 end,
+            }
+        },
+        {
+            event = "BufWrite",
+            cmd = {
+                desc = "Auto-format on save",
+                callback = function()
+                    if vim.fn.exists(":LspZeroFormat") > 0 then vim.cmd([[ LspZeroFormat ]]) end
+                end
             }
         }
     }
