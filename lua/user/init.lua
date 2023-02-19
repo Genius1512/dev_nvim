@@ -23,12 +23,12 @@ return {
                 e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
                 t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
                 ["/"] = { function() require("Comment.api").toggle.linewise.current() end, "Toggle comments" },
-                g = { "<cmd>terminal lazygit<cr>i", "Open lazygit" },
+                g = { "<cmd>LazyGit<cr>", "Open lazygit" },
             },
             f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
             e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
             t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
-            g = { "<cmd>terminal lazygit<cr>i", "Open lazygit" },
+            g = { "<cmd>LazyGit<cr>", "Open lazygit" },
         },
         i = {},
         v = {},
@@ -77,6 +77,7 @@ return {
                 }
             }
         },
+        { "kdheepak/lazygit.nvim" },
         {
             "nvim-neo-tree/neo-tree.nvim",
             branch = "v2.x",
