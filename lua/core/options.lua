@@ -1,4 +1,4 @@
-return function(opts, g, colorscheme, mapleader)
+return function(opts, g, mapleader)
 	for k, v in pairs(opts) do
     	vim.opt[k] = v
   	end
@@ -8,7 +8,4 @@ return function(opts, g, colorscheme, mapleader)
   	end
 
   	vim.g.mapleader = mapleader
-  	if colorscheme != nil then
-		vim.cmd("colorscheme " .. colorscheme)
-	end
 end

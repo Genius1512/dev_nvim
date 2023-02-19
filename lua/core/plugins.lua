@@ -22,7 +22,8 @@ return function(plugins, colorscheme)
         {
             "windwp/nvim-autopairs",
             config = true,
-        }
+        },
+        { "lukas-reineke/indent-blankline.nvim" },
     })
     
     -- Setup lazy
