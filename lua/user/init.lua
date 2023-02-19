@@ -19,16 +19,12 @@ return {
                     name = "File",
                     f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
                     n = { "<cmd>enew<cr>", "Create a new file" },
+                    e = { "<cmd>NeoTree float<cr>", "Open the file explorer" },
                 },
-                e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
                 t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
                 ["/"] = { function() require("Comment.api").toggle.linewise.current() end, "Toggle comments" },
                 g = { "<cmd>LazyGit<cr>", "Open lazygit" },
             },
-            f = { "<cmd>Telescope find_files<cr>", "Open the file picker" },
-            e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
-            t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
-            g = { "<cmd>LazyGit<cr>", "Open lazygit" },
         },
         i = {},
         v = {},
@@ -90,7 +86,6 @@ return {
                 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
             end,
         },
-
         {
             "lewis6991/gitsigns.nvim",
             config = {},
@@ -101,21 +96,21 @@ return {
             branch = "v1.x",
             dependencies = {
                 -- LSP Support
-                {'neovim/nvim-lspconfig'},             -- Required
-                {'williamboman/mason.nvim'},           -- Optional
-                {'williamboman/mason-lspconfig.nvim'}, -- Optional
+                { 'neovim/nvim-lspconfig' }, -- Required
+                { 'williamboman/mason.nvim' }, -- Optional
+                { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
                 -- Autocompletion
-                {'hrsh7th/nvim-cmp'},         -- Required
-                {'hrsh7th/cmp-nvim-lsp'},     -- Required
-                {'hrsh7th/cmp-buffer'},       -- Optional
-                {'hrsh7th/cmp-path'},         -- Optional
-                {'saadparwaiz1/cmp_luasnip'}, -- Optional
-                {'hrsh7th/cmp-nvim-lua'},     -- Optional
+                { 'hrsh7th/nvim-cmp' }, -- Required
+                { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+                { 'hrsh7th/cmp-buffer' }, -- Optional
+                { 'hrsh7th/cmp-path' }, -- Optional
+                { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+                { 'hrsh7th/cmp-nvim-lua' }, -- Optional
 
                 -- Snippets
-                {'L3MON4D3/LuaSnip'},             -- Required
-                {'rafamadriz/friendly-snippets'}, -- Optional
+                { 'L3MON4D3/LuaSnip' }, -- Required
+                { 'rafamadriz/friendly-snippets' }, -- Optional
             },
             config = function()
                 local lsp = require('lsp-zero').preset("recommended")
