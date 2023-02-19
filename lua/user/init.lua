@@ -1,5 +1,5 @@
 return {
-    colorscheme = "",
+    colorscheme = nil,
     mapleader = " ",
     opts = {},
     g = {},
