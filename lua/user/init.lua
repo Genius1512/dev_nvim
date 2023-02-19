@@ -21,8 +21,16 @@ return {
                     n = { "<cmd>enew<cr>", "Create a new file" },
                     e = { "<cmd>Neotree float<cr>", "Open the file explorer" },
                 },
+                l = {
+                    name = "LSP",
+                    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename the current symbol" },
+                    ["/"] = { function() require("Comment.api").toggle.linewise.current() end, "Toggle comments" },
+                },
+                c = {
+                    name = "Configuration",
+                    c = { "<cmd>e $HOME/.config/nvim/own_config/lua/user/init.lua<cr>", "Edit the user configuration file" },
+                },
                 t = { "<cmd>TroubleToggle<cr>", "Open trouble" },
-                ["/"] = { function() require("Comment.api").toggle.linewise.current() end, "Toggle comments" },
                 g = { "<cmd>LazyGit<cr>", "Open lazygit" },
             },
         },
@@ -30,14 +38,17 @@ return {
         v = {},
         x = {
             ["<leader>"] = {
-                ["/"] = {
-                    function()
-                        local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
-                        local api = require("Comment.api")
-                        vim.api.nvim_feedkeys(esc, "nx", false)
-                        api.toggle.linewise(vim.fn.visualmode())
-                    end,
-                    "Toggle comments"
+                l = {
+                    name = "LSP",
+                    ["/"] = {
+                        function()
+                            local esc = vim.api.nvim_replace_termcodes("<esc>", true, false, true)
+                            local api = require("Comment.api")
+                            vim.api.nvim_feedkeys(esc, "nx", false)
+                            api.toggle.linewise(vim.fn.visualmode())
+                        end,
+                        "Toggle comments"
+                    }
                 }
             }
         }
@@ -52,6 +63,7 @@ return {
             "numToStr/Comment.nvim",
             config = {}
         },
+        { "lukas-reineke/indent-blankline.nvim" },
         {
             "folke/which-key.nvim",
             config = function()
