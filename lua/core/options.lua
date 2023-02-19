@@ -1,4 +1,4 @@
-return function(opts, g)
+return function(opts, g, colorscheme, mapleader)
   for k, v in pairs(opts) do
     vim.opt[k] = v
   end
@@ -6,4 +6,7 @@ return function(opts, g)
   for k, v in pairs(g) do
     vim.g[k] = v
   end
+
+  vim.g.mapleader = mapleader
+  vim.cmd("colorscheme " .. colorscheme)
 end

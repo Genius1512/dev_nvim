@@ -1,15 +1,34 @@
-return function(plugins, opts)
-    local lazypath = opts.root .. "/lazy.nvim"
+return function(plugins, colorscheme)
+    -- Bootstrap lazy
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     if not vim.loop.fs_stat(lazypath) then
         vim.fn.system({
             "git",
             "clone",
             "--filter=blob:none",
             "https://github.com/folke/lazy.nvim.git",
-            "--branch=stable", -- latest stable release
+            "--branch=stable",
             lazypath,
         })
     end
     vim.opt.rtp:prepend(lazypath)
-    require("lazy").setup(plugins, opts)
+
+    -- Add default plugins
+    table.insert(plugins, {
+        {
+            "folke/which-key.nvim",
+            config = true,
+        },
+        {
+            "windwp/nvim-autopairs",
+            config = true,
+        }
+    })
+    
+    -- Setup lazy
+    require("lazy").setup(plugins, {
+        install = {
+            colorscheme = { colorscheme }
+        }
+    })
 end

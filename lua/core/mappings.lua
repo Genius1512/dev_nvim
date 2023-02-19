@@ -1,6 +1,6 @@
 return function(mappings)
     local wk = require("which-key")
-    for k, v in pairs(mappings) do
-        wk.register(v, { mode = k })
+    for mode, mapping in pairs(mappings) do
+        wk.register(mapping, { mode = mode })
     end
 end
